@@ -1051,7 +1051,7 @@ declare namespace $ {
         notes(): string;
         site(): URL;
         address(): string;
-        coords(): $mol_vector_2d<number>;
+        coords(): $mol_vector_2d<number> | null;
         route(): string;
         colors(): readonly string[];
         meetups(): $piterjs_meetup[];
@@ -2326,6 +2326,7 @@ declare namespace $.$$ {
         description(): string;
         date(): string;
         video(): string;
+        coords(): $mol_vector_2d<number> | null;
         bosy(): $mol_view[];
         links(): $mol_link[];
         speeches(): $piterjs_speech_snippet[];

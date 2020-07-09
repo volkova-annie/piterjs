@@ -3850,14 +3850,18 @@ var $;
             return $.$mol_data_wrapper($.$mol_data_string, URL)(this.data().site);
         }
         address() {
-            return $.$mol_data_string(this.data().address);
+            var _a;
+            return (_a = $.$mol_data_optional($.$mol_data_string)(this.data().address)) !== null && _a !== void 0 ? _a : '';
         }
         coords() {
-            const coords = $.$mol_data_array($.$mol_data_number)(this.data().coords);
+            const coords = $.$mol_data_optional($.$mol_data_array($.$mol_data_number))(this.data().coords);
+            if (!coords)
+                return null;
             return new $.$mol_vector_2d(coords[0], coords[1]);
         }
         route() {
-            return $.$mol_data_string(this.data().route);
+            var _a;
+            return (_a = $.$mol_data_optional($.$mol_data_string)(this.data().route)) !== null && _a !== void 0 ? _a : '';
         }
         colors() {
             return $.$mol_data_array($.$mol_data_string)(this.data().colors);
@@ -7357,6 +7361,9 @@ var $;
                 var _a;
                 return (_a = this.meetup().video()) !== null && _a !== void 0 ? _a : '';
             }
+            coords() {
+                return this.meetup().place().coords();
+            }
             bosy() {
                 return [
                     ...this.description() ? [this.Description()] : [],
@@ -7366,7 +7373,7 @@ var $;
             }
             links() {
                 return [
-                    this.Place(),
+                    ...this.coords() ? [this.Place()] : [],
                     ...this.video() ? [this.Video()] : [],
                 ];
             }
